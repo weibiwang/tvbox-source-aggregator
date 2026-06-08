@@ -71,11 +71,11 @@ async function _runAggregation(storage: Storage, config: AppConfig, startTime: n
   const snapshotRaw = await storage.get(KV_SITE_SNAPSHOT);
   const prevSiteKeys: Set<string> = snapshotRaw ? new Set(JSON.parse(snapshotRaw)) : new Set();
 
-  // Step 0: 自动抓取源（需配置 SCRAPE_SOURCE_URL 环境变量）
-  if (config.scrapeSourceUrl && config.scrapeSourceReferer) {
+  // Step 0: 自动抓取源（需配置 SCRAPE_SOURCE_URL 环境变量，referer 可选）
+  if (config.scrapeSourceUrl) {
     logger.info('aggregation', 'Step 0: Auto-scraping sources...');
     try {
-      const scrapeCfg: ScrapeSourceConfig = { url: config.scrapeSourceUrl, referer: config.scrapeSourceReferer };
+      const scrapeCfg: ScrapeSourceConfig = { url: config.scrapeSourceUrl, referer: config.scrapeSourceReferer || '' };
       const scraped = await scrapeSourceList(scrapeCfg);
       if (scraped.length > 0) {
         const existingRaw = await storage.get(KV_MANUAL_SOURCES);
