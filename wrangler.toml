@@ -14,8 +14,8 @@ crons = ["0 * * * *"]  # 每小时触发，实际执行频率由 Admin 设置的
 
 [[kv_namespaces]]
 binding = "KV"
-id = "77aef5de553d4a77b58376f83765a7d2"
-preview_id = "77aef5de553d4a77b58376f83765a7d2"
+id = "46790f8935d94f86ac132823d008bdbe"
+preview_id = "46790f8935d94f86ac132823d008bdbe"
 
 [vars]
 SPEED_TIMEOUT_MS = "5000"   # 源地址延迟阈值（毫秒）
